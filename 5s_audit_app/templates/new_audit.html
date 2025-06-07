@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>New Audit</h2>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label class="form-label">Area Zone</label>
+    <input type="text" name="area_zone" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Checklist</label>
+    <textarea name="checklist" class="form-control" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Score</label>
+    <input type="number" name="score" class="form-control" required>
+  </div>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" value="1" name="corrective_required" id="corrective_required">
+    <label class="form-check-label" for="corrective_required">Corrective Required</label>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Due Date</label>
+    <input type="date" name="due_date" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Photo Before</label>
+    <input type="file" name="photo_before" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Status</label>
+    <select name="status" class="form-select">
+      <option value="Open">Open</option>
+      <option value="Closed">Closed</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

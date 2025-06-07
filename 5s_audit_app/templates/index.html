@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<a href="{{ url_for('new_audit') }}" class="btn btn-primary mb-3">New Audit</a>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Area Zone</th>
+      <th>Score</th>
+      <th>Status</th>
+      <th>Due Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for audit in audits %}
+    <tr>
+      <td>{{ audit.id }}</td>
+      <td>{{ audit.area_zone }}</td>
+      <td>{{ audit.score }}</td>
+      <td>{{ audit.status }}</td>
+      <td>{{ audit.due_date }}</td>
+      <td><a class="btn btn-sm btn-secondary" href="{{ url_for('audit_detail', audit_id=audit.id) }}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
