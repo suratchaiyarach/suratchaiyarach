@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Audit Detail</h2>
+<table class="table table-bordered">
+  <tr><th>ID</th><td>{{ audit.id }}</td></tr>
+  <tr><th>Area Zone</th><td>{{ audit.area_zone }}</td></tr>
+  <tr><th>Checklist</th><td>{{ audit.checklist }}</td></tr>
+  <tr><th>Score</th><td>{{ audit.score }}</td></tr>
+  <tr><th>Status</th><td>{{ audit.status }}</td></tr>
+  <tr><th>Due Date</th><td>{{ audit.due_date }}</td></tr>
+  <tr>
+    <th>Photo Before</th>
+    <td>
+      {% if audit.photo_before %}
+      <img src="{{ url_for('static', filename='uploads/' + audit.photo_before) }}" class="img-fluid" style="max-width:200px">
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <th>Photo After</th>
+    <td>
+      {% if audit.photo_after %}
+      <img src="{{ url_for('static', filename='uploads/' + audit.photo_after) }}" class="img-fluid" style="max-width:200px">
+      {% endif %}
+    </td>
+  </tr>
+</table>
+<form method="post" enctype="multipart/form-data" class="mb-3">
+  <div class="mb-3">
+    <label class="form-label">Update Status</label>
+    <select name="status" class="form-select">
+      <option value="Open" {% if audit.status=='Open' %}selected{% endif %}>Open</option>
+      <option value="Closed" {% if audit.status=='Closed' %}selected{% endif %}>Closed</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Photo After</label>
+    <input type="file" name="photo_after" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+{% endblock %}
